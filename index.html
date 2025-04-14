@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secret Message Encryptor</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Secret Message Encryptor</h1>
+    
+    <textarea id="inputMessage" placeholder="Enter your message here..."></textarea>
+    
+    <select id="cipherMethod">
+      <option value="caesar">Caesar Cipher</option>
+      <option value="reverse">Reverse Cipher</option>
+    </select>
+
+    <input type="number" id="shift" value="3" placeholder="Shift (for Caesar)" />
+
+    <div class="buttons">
+      <button onclick="encryptMessage()">Encrypt</button>
+      <button onclick="decryptMessage()">Decrypt</button>
+    </div>
+
+    <textarea id="outputMessage" placeholder="Encrypted/Decrypted message will appear here..." readonly></textarea>
+  </div>
+</body>
+</html>
