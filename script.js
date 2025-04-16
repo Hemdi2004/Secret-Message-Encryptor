@@ -1,4 +1,7 @@
-function encryptMessage() {
+function encryptMessage(e) {
+  
+    e.preventDefault();
+
     const method = document.getElementById('cipherMethod').value;
     const text = document.getElementById('inputMessage').value;
     const shift = parseInt(document.getElementById('shift').value) || 3;

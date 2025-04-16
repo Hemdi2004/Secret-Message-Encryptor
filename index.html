@@ -8,11 +8,11 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="container">
+  <form class="container" action="save.php" method="post" onsubmit="encryptMessage(event)">
     <h1>Secret Message Encryptor</h1>
     
     <textarea id="inputMessage" placeholder="Enter your message here..."></textarea>
-    
+    <input type="hidden" id="encryptedMessage" name="encryptedMessage">
     <select id="cipherMethod">
       <option value="caesar">Caesar Cipher</option>
       <option value="reverse">Reverse Cipher</option>
@@ -23,9 +23,11 @@
     <div class="buttons">
       <button onclick="encryptMessage()">Encrypt</button>
       <button onclick="decryptMessage()">Decrypt</button>
+      <button type="submit">Save Secret</button>
     </div>
 
     <textarea id="outputMessage" placeholder="Encrypted/Decrypted message will appear here..." readonly></textarea>
-  </div>
+    <input type="hidden" id="decryptedMessage" name="decryptedMessage">
+  </form>
 </body>
 </html>
