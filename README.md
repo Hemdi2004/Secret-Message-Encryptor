@@ -1,30 +1,36 @@
 # Secret Message Encryptor
 
-A web-based tool that allows users to securely encrypt and decrypt messages using classic encryption methods like the Caesar Cipher. This simple tool helps you encode your messages into secret codes, making them unreadable to unauthorized viewers.
+A web-based tool that allows users to securely encrypt and decrypt messages using classic encryption methods like the Caesar Cipher and Reverse Cipher. With added PHP and MySQL integration, users can now save their encrypted messages to a database for later use.
 
 ## Features
 
 - **Caesar Cipher**: Encrypt and decrypt messages by shifting letters in the alphabet.
-- **User-Friendly Interface**: Input a message and shift value, then see the encrypted/decrypted result instantly.
-- **Secure Messaging**: Encrypt your messages to share them privately.
+- **Reverse Cipher**: Flip your message backwards for simple obfuscation.
+- **Message Saving**: Encrypted messages can be saved to a MySQL database using PHP.
+- **User-Friendly Interface**: Input your message, choose a cipher, and get results instantly.
+- **Secure Messaging**: Makes it easier to privately share encoded text.
 
 ## How to Use
 
-1. Open the `index.html` file in your web browser.
-2. Enter your message in the input field.
-3. Choose a shift value (for Caesar Cipher).
-4. Click the "Encrypt" button to encode your message or the "Decrypt" button to decode it.
-5. The encrypted or decrypted message will appear below.
+1. Open the project using a local PHP server (like **XAMPP**, **MAMP**, or **WAMP**).
+2. Navigate to the project directory in your browser (e.g., `http://localhost/Secret%20Message%20Encryptor/`).
+3. Enter your message in the input field.
+4. Choose a cipher method (Caesar or Reverse).
+5. (Optional for Caesar) Enter a shift value.
+6. Click "Encrypt" to encode the message or "Decrypt" to decode it.
+7. Click "Save Secret" to store the encrypted message in the database.
 
 ## Technologies Used
 
-- **HTML**: Structure and content of the page.
+- **HTML**: Page structure.
 - **CSS**: Styling and layout.
-- **JavaScript**: Encryption and decryption logic (Caesar Cipher).
+- **JavaScript**: Encryption/Decryption logic.
+- **PHP**: Backend to handle saving to database.
+- **MySQL**: Store encrypted messages securely.
 
 ## Installation
 
-To run this project locally:
+To run this project locally with database support:
 
 1. Clone the repository:
    ```bash
