@@ -9,9 +9,6 @@
 body {
     font-family: Arial, sans-serif;
     background: #f4f4f4;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
     min-height: 100vh;
   }
 
@@ -47,4 +44,22 @@ body {
     display: flex;
     gap: 10px;
   }
+
+  .navbar{
+    margin-bottom: 150px;
+  }
   
+
+  .form-and-h1-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin:0 auto;
+  }
+
+  .form-and-h1-container p{
+    color: rgb(164, 163, 163);
+    font-weight: 450;
+  }
