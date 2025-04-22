@@ -63,3 +63,13 @@ body {
     color: rgb(164, 163, 163);
     font-weight: 450;
   }
+
+  .navbar{
+    padding: 20px;
+    height: 75px;
+  }
+
+ .fa-solid{
+  color: white;
+  font-size: 1.4rem;
+ }
