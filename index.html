@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Secret Message Encryptor</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
 
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
    <script src="https://kit.fontawesome.com/3cb2ed98e6.js" crossorigin="anonymous"></script>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"/>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="script.js" defer></script>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
      <p>Encrypt and decrypt your messages easily and securely.</p>
     </header>
 
-    <form class="container p-4 mb-5" action="save.php" method="post" onclick="encryptMessage(event)">
+    <form class="container p-4 mb-5" action="save.php" method="POST">
       
       <textarea id="inputMessage" placeholder="Enter your message here..."></textarea>
       <input type="hidden" id="encryptedMessage" name="encryptedMessage">
@@ -43,8 +43,8 @@
       <input class="btn btn-outline-secondary" type="number" id="shift" value="3" placeholder="Shift (for Caesar)" />
   
       <div class="buttons">
-        <button onclick="encryptMessage()" class="btn btn-primary btn-encrypt"><i class="fa-solid fa-lock "></i>Encrypt</button>
-        <button onclick="decryptMessage()" class="btn btn-outline-secondary">Decrypt</button>
+        <button onclick="encryptMessage(event)" class="btn btn-primary btn-encrypt"><i class="fa-solid fa-lock "></i>Encrypt</button>
+        <button onclick="decryptMessage(event)" class="btn btn-outline-secondary">Decrypt</button>
         <button type="submit" class="btn btn-outline-secondary">Save Secret</button>
       </div>
       <textarea id="outputMessage" placeholder="Encrypted/Decrypted message will appear here..." readonly></textarea>
