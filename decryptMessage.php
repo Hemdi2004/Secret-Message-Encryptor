@@ -42,14 +42,14 @@
     //caesar decrypt function
 
     function caesarDecrypt($text, $shift){
-            $shift = $shitf % 26;
+            $shift = $shift % 26;
             $result = '';
 
             for($i = 0; $i < strlen($text); $i++){
                   $char = $text[$i];
                   if ($char >= 'A' && $char <='Z') {
                     $result .= chr(((ord($char) - 65 - $shift + 26 ) % 26) + 65);
-                  }elseif ($char >= 'a' $$ $char <= 'z') {
+                  }elseif ($char >= 'a' && $char <= 'z') {
                     $result .= chr(((ord($char) - 97 - $shift + 26 ) % 26) + 97);
                   }else{
                     $result .= $char;
