@@ -24,20 +24,20 @@ $sql = "SELECT id , context FROM messages";
 $result = $conn->query($sql);
 
 //check if there's any saved messages 
-if (result->num_rows > 0) {
-   while ($row = result->fetch_assoc()) {
-    echo "<div class='message'>"
-    echo "<p>Encrypted Message : " . htmlspecialchars($row['encryptedMessage']) . "</p>";
+if ($result->num_rows > 0) {
+   while ($row = $result->fetch_assoc()) {
+    echo "<div class='message'>";
+    echo "<p>Encrypted Message : " . htmlspecialchars($row['context']) . "</p>";
 
     //Add the "Decrypt Button" (we'll handle decryption next)
-    echo "<a href='decryptedMessage.php?id=" . $row[ . 'id'] . " ' class='btn btn-primary'>Decrypt</a>";
-    echo "</div><hr>"
+    echo "<a href='decryptMessage.php?id=" . $row['id'] . "' class='btn btn-primary'>Decrypt</a>";
+    echo "</div><hr>";
 
-   }
+   };
 }else {
-    echo "No messages found."
+    echo "No messages found.";
 }
 
-$conn_close();
+$conn->close();
 
 ?>
