@@ -16,15 +16,22 @@
 <body>
 
    <!-- Grey with black text -->
-   <nav class="navbar navbar-dark bg-dark px-4 py-3 d-flex justify-content-between align-items-center">
+   <nav class="navbar navbar-dark bg-dark px-4 py-3 d-flex justify-content-around align-items-center">
     <div class="d-flex align-items-center gap-2">
       <i class="bi bi-lock-fill fs-4 text-white"></i>
       <span class="navbar-brand mb-0 h1">Secret Vault</span>
     </div>
-    <div class="d-flex">
-      <a href="#" class="btn btn-outline-light mx-2">Features</a>
-      <a href="viewMessages.php" class="btn btn-outline-light mx-2">View Messages</a>
+    <div class="dropdown">
+      <button type="button" class="btn btn-primary dropdown-toggle px-3 py-1" data-bs-toggle="dropdown">
+        Features
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="viewMessages.php">View Saved Secrets</a></li>
+        <li><a class="dropdown-item" href="#">Delete Secrets</a></li>
+        <li><a class="dropdown-item" href="#">Update Secrets</a></li>
+      </ul>
     </div>
+      <!-- <a href="viewMessages.php" class="btn btn-outline-light mx-2">View Messages</a> -->
   </nav>
   
    <div class="container-md p-3">
