@@ -1,61 +1,80 @@
 <?php
-   //Database connection
-   $servername = "localhost";
-   $username = "root";
-   $password = "";
-   $dbname = "secret_vault";
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "secret_vault";
 
-   //Create connection
-   $conn = new mysqli($servername, $username , $password, $dbname);
+// Create connection
+$conn = new mysqli($servername, $username , $password, $dbname);
 
-   //check connection
-   if ($conn->connect_error) {
-     die("connection failed: " . $conn->connect_error);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-   //Get the encrypted message id from the URL 
-   $id = $_GET['id'];
+// Get the encrypted message ID from the URL 
+$id = $_GET['id'];
 
-   //Fetch the encrypted Messages from the DB
-    $sql = "SELECT context FROM messages WHERE id = $id";
-    $result = $conn->query($sql);
+// Fetch the encrypted message from DB
+$sql = "SELECT context FROM messages WHERE id = $id";
+$result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        //Get the encrypted messages
-        $row = $result->fetch_assoc();
-        $encryptedMessage = $row['context'];
-
-        //Decrypt the message using decryption function
-        $decryptedMessage = caesarDecrypt($encryptedMessage, 3);
-
-        echo "<div class='card'>";
-        echo "<div class='card-body'>";
-        echo "<h5 class='card-title'>Decrypted Message</h5>";
-        echo "<p class='card-text'>" . htmlspecialchars($decryptedMessage) . "</p>";
-        echo "</div></div>";
-
-    }else{
-        echo "Message not found!";
-    }
-    $conn->close();
-
-    //caesar decrypt function
-
-    function caesarDecrypt($text, $shift){
-            $shift = $shift % 26;
-            $result = '';
-
-            for($i = 0; $i < strlen($text); $i++){
-                  $char = $text[$i];
-                  if ($char >= 'A' && $char <='Z') {
-                    $result .= chr(((ord($char) - 65 - $shift + 26 ) % 26) + 65);
-                  }elseif ($char >= 'a' && $char <= 'z') {
-                    $result .= chr(((ord($char) - 97 - $shift + 26 ) % 26) + 97);
-                  }else{
-                    $result .= $char;
-                  }
-            }
-
-            return $result;
-    }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Decrypted Message</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light d-flex justify-content-center align-items-center vh-100">
+
+<div class="container-sm">
+  <?php
+  if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $encryptedMessage = $row['context'];
+
+      // Decrypt the message
+      $decryptedMessage = caesarDecrypt($encryptedMessage, 3);
+      ?>
+
+      <div class="card shadow-lg border-0 rounded-4 bg-secondary">
+        <div class="card-header bg-primary text-white rounded-top-4">
+          <h4 class="mb-0">🔓 Your Decrypted Message</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text fs-5"><?php echo htmlspecialchars($decryptedMessage); ?></p>
+          <a href="index.php" class="btn btn-outline-light mt-3">🔙 Back to Home</a>
+        </div>
+      </div>
+
+  <?php
+  } else {
+      echo "<div class='alert alert-danger'>Message not found!</div>";
+  }
+  $conn->close();
+
+  // Caesar decrypt function
+  function caesarDecrypt($text, $shift){
+      $shift = $shift % 26;
+      $result = '';
+
+      for($i = 0; $i < strlen($text); $i++){
+          $char = $text[$i];
+          if ($char >= 'A' && $char <= 'Z') {
+              $result .= chr(((ord($char) - 65 - $shift + 26) % 26) + 65);
+          } elseif ($char >= 'a' && $char <= 'z') {
+              $result .= chr(((ord($char) - 97 - $shift + 26) % 26) + 97);
+          } else {
+              $result .= $char;
+          }
+      }
+      return $result;
+  }
+  ?>
+</div>
+
+</body>
+</html>
