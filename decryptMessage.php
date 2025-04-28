@@ -16,21 +16,31 @@ if ($conn->connect_error) {
 // Get the encrypted message ID from the URL 
 $id = $_GET['id'];
 
-// Fetch the encrypted message from DB
-$sql = "SELECT context FROM messages WHERE id = $id";
-$result = $conn->query($sql);
+// Fetch the encrypted message from DB but it could be dengerous && it leaves the app vulnerable to SQL injection attacks!
+// $sql = "SELECT context FROM messages WHERE id = $id";
+// $result = $conn->query($sql);
+
+// this is a secure way to fetch the encrypted message from DB 
+// Secure way
+$stmt = $conn->prepare("SELECT context FROM messages WHERE id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Decrypted Message</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-dark text-light d-flex justify-content-center align-items-center vh-100">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-<div class="container-sm">
+</head>
+<body class="bg-dark text-light d-flex justify-content-center align-items-center min-vh-100">
+
+<div class="container-fluid px-3 px-md-5">
   <?php
   if ($result->num_rows > 0) {
       $row = $result->fetch_assoc();
@@ -45,8 +55,8 @@ $result = $conn->query($sql);
           <h4 class="mb-0">🔓 Your Decrypted Message</h4>
         </div>
         <div class="card-body">
-          <p class="card-text fs-5"><?php echo htmlspecialchars($decryptedMessage); ?></p>
-          <a href="index.php" class="btn btn-outline-light mt-3">🔙 Back to Home</a>
+          <p class="card-text fw-bold fs-5"><?php echo htmlspecialchars($decryptedMessage); ?></p>
+          <a href="viewMessages.php" class="btn btn-outline-light mt-3"><i class="fas fa-arrow-left me-2"></i> Back to Messages</a>
         </div>
       </div>
 
